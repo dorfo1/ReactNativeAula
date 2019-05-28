@@ -1,27 +1,34 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {Button} from 'native-base'
+import {createStackNavigator,createAppContainer} from 'react-navigation'
 import Seasons from './src/screens/Seasons/Seasons'
+import Corridas from './src/screens/Corridas/Corridas'
 
-export default class App extends React.Component {
-  
-  componentDidMount(){
 
-  }
-  
-  
-  render() {
-    return (
-      <Seasons/>
-    );
-  }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const AppNavigator = createStackNavigator(
+  {
+    Seasons:{
+      screen: Seasons
+    },
+    Corridas:{
+      screen: Corridas
+    }
   },
-});
+  {
+    initialRouteName : 'Seasons',
+    defaultNavigationOptions:{
+      headerStyle:{
+        backgroundColor: '#333'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle:{
+        fontWeight: 'bold',
+      },
+    },
+
+  }
+);
+
+
+export default createAppContainer(AppNavigator)
