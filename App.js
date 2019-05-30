@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {createStackNavigator,createAppContainer} from 'react-navigation'
 import Seasons from './src/screens/Seasons/Seasons'
-import Corridas from './src/screens/Corridas/Corridas'
-
+import Corridas from './src/screens/MenuTemporada/MenuTemporada'
+import Pilotos from './src/screens/Pilotos/Pilotos'
 
 
 const AppNavigator = createStackNavigator(
@@ -13,6 +13,9 @@ const AppNavigator = createStackNavigator(
     },
     Corridas:{
       screen: Corridas
+    },
+    Pilotos:{
+      screen: Pilotos
     }
   },
   {

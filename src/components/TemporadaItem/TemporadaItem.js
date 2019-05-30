@@ -1,9 +1,6 @@
 import React from 'react'
-import {View,StyleSheet,Text} from 'react-native'
-import {Button} from 'native-base'
-
-
-
+import {View,StyleSheet,Text,TouchableHighlight} from 'react-native'
+import {Button, Item} from 'native-base'
 
 
 class TemporadaItem extends React.Component{
@@ -14,12 +11,33 @@ class TemporadaItem extends React.Component{
 
     render(){
         return(
-            <View style={{width:'100%',justifyContent:"center"}}>
-                <Button block style={{width:'80%',margin:4}} onPress={this.tempClicked} >
-                    <Text>{this.props.temporada.season}</Text>
-                </Button>
-            </View>
+            <TouchableHighlight style={{flex:1}} onPress={this.tempClicked}>
+                <View style={styles.gridView}>
+                    <Text style={styles.gridText}>{this.props.temporada.season}</Text>
+                </View>
+            </TouchableHighlight>
+            
         );
     }
 }
+
+const styles = StyleSheet.create({
+    gridView:{
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center',
+        height:50,
+        backgroundColor:'#348faa',
+        margin:5
+    },
+    gridText:{
+        fontSize:20,
+        fontWeight:'bold',
+        justifyContent:'center',
+        color:'#fff',
+        padding:10
+    }
+})
+
+
 export default TemporadaItem;

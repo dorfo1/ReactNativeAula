@@ -3,9 +3,7 @@ import {View,StyleSheet,Text,FlatList,TextInput,Dimensions} from 'react-native';
 
 import TemporadaItem from '../../components/TemporadaItem/TemporadaItem'
 
-
-
-
+import * as api from '../../utils/F1API'
 
 
 class Seasons extends React.PureComponent{
@@ -31,27 +29,23 @@ class Seasons extends React.PureComponent{
     }
 
     renderSeason(){
-       fetch("https://ergast.com/api/f1/seasons.json",
-       {method:"GET", headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',}})
-            .then(resp => resp.json())
-            .then(resp => this.setState({result:resp.MRData.SeasonTable.Seasons}))
-            .catch(error => alert(error))
+        api.buscarTemporadas().then(response => this.setState({result:response}))
     }
 
     onTemporadaClick = temporada =>{
-        console.log(this.props.navigation)
-        console.log(temporada)
-        //this.props.navigation.navigate("Corridas")
+       // console.log(this.props.navigation)
+       // console.log(temporada)
+        this.props.navigation.navigate("Corridas",{
+            temporada:temporada
+        })
     }
 
    
     render(){
         return(
-           <FlatList data={this.state.result} keyExtractor={ (item,index) => String(index)} renderItem={({item}) =>{
+            <FlatList data={this.state.result} numColumns={2} keyExtractor={ (item,index) => String(index)} renderItem={({item}) =>{
                 return <TemporadaItem temporadaClick={this.onTemporadaClick} temporada={item}/>
-           }}/>
+            }}/>
         );
        
     }
@@ -62,8 +56,8 @@ const screenWidth = Dimensions.width;
 const styles = StyleSheet.create({
     container:{
       flex:1,
-      marginLeft:20
-    },
+      alignItems:'center'
+      },
     textField:{
         width:'100%',
     },
