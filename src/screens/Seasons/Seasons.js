@@ -29,13 +29,12 @@ class Seasons extends React.PureComponent{
     }
 
     renderSeason(){
+    
         api.buscarTemporadas().then(response => this.setState({result:response}))
     }
 
     onTemporadaClick = temporada =>{
-       // console.log(this.props.navigation)
-       // console.log(temporada)
-        this.props.navigation.navigate("Corridas",{
+        this.props.navigation.navigate("MenuTemporada",{
             temporada:temporada
         })
     }
@@ -50,22 +49,5 @@ class Seasons extends React.PureComponent{
        
     }
 }
-
-const screenWidth = Dimensions.width;
-
-const styles = StyleSheet.create({
-    container:{
-      flex:1,
-      alignItems:'center'
-      },
-    textField:{
-        width:'100%',
-    },
-    listaTemporadas:{
-        flex:1,
-        width:screenWidth
-    }
-
-})
 
 export default Seasons

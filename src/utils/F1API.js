@@ -2,7 +2,8 @@
 
 const url = "https://ergast.com/api/f1/";
 const url_seasons = "seasons.json?limit=1000?offset=20";
-const url_pilotos = "/drivers"
+const url_pilotos = "/drivers.json"
+const url_corridas = "/circuits.json"
 
 
 const headers = {
@@ -18,8 +19,13 @@ export const buscarTemporadas = () =>
         .catch(error => error.message)
 
 
-export const buscarPilotos = season =>{
+export const buscarPilotos = season =>
     fetch(url+season+url_pilotos,headers)
-        .then(response =>response.json())    
+        .then(response => response.json())  
+        .then(response => response.MRData.DriverTable.Drivers)  
         .catch(error=> error)
-}
+
+export const buscarCorridas = season =>
+    fetch(url+season+url_corridas,headers)
+        .then(response => response.json())
+        .then(response => response.MRData.CircuitTable.Circuits)

@@ -4,8 +4,13 @@ import {View,StyleSheet,Text,TouchableHighlight} from 'react-native'
 
 
 const CustomButton = props =>{
+
+    customButtonClick = () =>{
+        props.customButtonClicked(props.title)
+    }
+
     return (
-    <TouchableHighlight style={{width:'100%',alignItems:'center'}}onPress={props.customButtonClicked}>
+    <TouchableHighlight style={{width:'100%',alignItems:'center'}} onPress={this.customButtonClick}>
         <View style={[{backgroundColor:props.cor},styles.container]}>
             <Text style={styles.textPrimary}>{props.title}</Text>
         </View>

@@ -14,6 +14,12 @@ export default class MenuTemporada extends React.Component{
         this.setState({temporada:this.props.navigation.getParam('temporada')})
     }
 
+    static navigationOptions = ({navigation}) =>{
+        return {
+            title: "Temporada: " + navigation.getParam('temporada').season
+        }
+    }
+
     onCustomButtonClicked = title =>{
         this.props.navigation.navigate(title,{
             temporada:this.state.temporada
@@ -23,11 +29,8 @@ export default class MenuTemporada extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-            <Text style={styles.textHeader}>Temporada : {this.state.temporada.season}</Text>
-                <View style={styles.containerButtons}>
-                    <CustomButton title={"Corridas"} cor={'#9575cd'} customButtonClicked={this.onCustomButtonClicked}/>
-                    <CustomButton title={"Pilotos"} cor={'#00897b'} customButtonClicked={this.onCustomButtonClicked}/>
-                </View>
+                <CustomButton title={"Corridas"} cor={'#1A237E'} customButtonClicked={this.onCustomButtonClicked}/>
+                <CustomButton title={"Pilotos"} cor={'#263238'} customButtonClicked={this.onCustomButtonClicked}/>  
             </View>
         );
     }
@@ -36,17 +39,9 @@ export default class MenuTemporada extends React.Component{
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        alignItems:'center',
-    },
-    containerButtons:{
-        flex:1,
         width:'100%',
         alignItems:'center',
         justifyContent:'center'
     },
-    textHeader:{
-        fontSize:20,
-        fontWeight:'bold',
-        marginTop:40
-    }
+  
 })
