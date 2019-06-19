@@ -7,25 +7,29 @@ const url_corridas = "/circuits.json"
 
 
 const headers = {
-    method:"GET",
+    method: "GET",
     Accept: 'application/json',
     'Content-Type': 'application/json'
 }
 
-export const buscarTemporadas = () => 
-    fetch(url+url_seasons,headers)
+export const buscarTemporadas = () =>
+    fetch(url + url_seasons, headers)
         .then(response => response.json())
         .then(response => response.MRData.SeasonTable.Seasons)
         .catch(error => error.message)
 
 
 export const buscarPilotos = season =>
-    fetch(url+season+url_pilotos,headers)
-        .then(response => response.json())  
-        .then(response => response.MRData.DriverTable.Drivers)  
-        .catch(error=> error)
+    fetch(url + season + url_pilotos, headers)
+        .then(response => response.json())
+        .then(response => response.MRData.DriverTable.Drivers)
+        .catch(error => error)
 
 export const buscarCorridas = season =>
-    fetch(url+season+url_corridas,headers)
+    fetch(url + season + url_corridas, headers)
         .then(response => response.json())
         .then(response => response.MRData.CircuitTable.Circuits)
+
+
+export const buscarDetalhesCorrida = (season, corrida) =>
+    fetch(url + season + "/" + corrida / results)
