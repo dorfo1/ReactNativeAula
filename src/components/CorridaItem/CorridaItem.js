@@ -1,22 +1,37 @@
 import React from 'react'
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text, TouchableOpacity,Image } from 'react-native'
 
 
 const CorridaItem = props => {
 
+    onItemClick = () =>{
+        props.onClick(props.corrida)
+    }
 
     return (
-        <TouchableOpacity style={styles.container}>
-            <Text style={styles.primaryText}>{props.corrida.circuitName}</Text>
-            <Text style={styles.secundaryText}>{props.corrida.Location.locality}-{props.corrida.Location.country}</Text>
-            <View style={styles.divider}></View>
+        <TouchableOpacity style={styles.container} onPress={this.onItemClick}>
+            <Image style={styles.image} source={require('./../../../assets/race_icon.png')}/>
+            <View style={styles.containerNome}>
+                <Text style={styles.primaryText}>{props.corrida.circuitName}</Text>
+                <Text style={styles.secundaryText}>{props.corrida.Location.locality}-{props.corrida.Location.country}</Text>
+                <View style={styles.divider}></View>
+            </View>
         </TouchableOpacity>
+       
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
+    container:{
+        flexDirection:'row',
+        alignItems:'center'
+    },
+    containerNome:{
+        width:'100%'
+    },
+    image:{
+        width:50,
+        height:50,
     },
     primaryText: {
         fontSize: 20,

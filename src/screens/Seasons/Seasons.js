@@ -1,5 +1,5 @@
 import React from 'react'
-import {View,StyleSheet,Text,FlatList,TextInput,Dimensions} from 'react-native';
+import {View,StyleSheet,FlatList,ActivityIndicator} from 'react-native';
 
 import TemporadaItem from '../../components/TemporadaItem/TemporadaItem'
 
@@ -11,7 +11,8 @@ class Seasons extends React.PureComponent{
     state={
         temporada:"",
         result:[],
-        data:[1,2,3,4,5]
+        data:[1,2,3,4,5],
+        loading:true
     }
 
     static navigationOptions = () =>{
@@ -30,7 +31,7 @@ class Seasons extends React.PureComponent{
 
     renderSeason(){
     
-        api.buscarTemporadas().then(response => this.setState({result:response}))
+        api.buscarTemporadas().then(response => this.setState({result:response,loading:false}))
     }
 
     onTemporadaClick = temporada =>{
@@ -42,12 +43,29 @@ class Seasons extends React.PureComponent{
    
     render(){
         return(
-            <FlatList data={this.state.result} numColumns={2} keyExtractor={ (item,index) => String(index)} renderItem={({item}) =>{
-                return <TemporadaItem temporadaClick={this.onTemporadaClick} temporada={item}/>
-            }}/>
+            <View style={styles.container}>
+                <FlatList data={this.state.result} numColumns={2} keyExtractor={ (item,index) => String(index)} renderItem={({item}) =>{
+                    return <TemporadaItem temporadaClick={this.onTemporadaClick} temporada={item}/>
+                }}/>
+                {this.state.loading===true ? <ActivityIndicator size='large' color='#333' style={styles.loadingBar}/> : null }
+            </View>
         );
        
     }
 }
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1
+    },
+    loadingBar:{
+        position:'absolute',
+        left:0,
+        right:0,
+        top:0,
+        bottom:0,
+        alignSelf: 'center',
+    }
+})
 
 export default Seasons

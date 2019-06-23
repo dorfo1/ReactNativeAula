@@ -5,6 +5,9 @@ import Seasons from './src/screens/Seasons/Seasons'
 import MenuTemporada from './src/screens/MenuTemporada/MenuTemporada'
 import Pilotos from './src/screens/Pilotos/Pilotos'
 import Corridas from './src/screens/Corridas/Corridas'
+import DetalhesCorrida from './src/screens/DetalhesCorrida/DetalhesCorrida';
+import DetalhesPiloto from './src/screens/DetalhesPiloto/DetalhesPiloto';
+
 
 const AppNavigator = createStackNavigator(
   {
@@ -19,6 +22,12 @@ const AppNavigator = createStackNavigator(
     },
     Corridas:{
       screen: Corridas
+    },
+    DetalhesCorrida:{
+      screen:DetalhesCorrida
+    },
+    DetalhesPiloto:{
+      screen:DetalhesPiloto
     }
   },
   {
